@@ -23,7 +23,35 @@ def register(request):
     response.set_cookie('password',password)
     return response
 
-def userlogin(request):
+# def userlogin(request):
+#     if request.method=='POST':
+#         email=request.POST.get('email')
+#         password=request.POST.get('password')
+
+def login(request):
     if request.method=='POST':
-        email=request.POST.get('email')
-        password=request.POST.get('password')
+        print("hello")
+        name=request.POST.get('name')
+        contact=request.POST.get('contact')
+        #print(name,contact)
+        name1=request.COOKIES['name']
+        email1=request.COOKIES['email']
+        contact1=request.COOKIES['contact']
+        password1=request.COOKIES['password']
+        print(name1,email1,contact1,password1)
+        if name1==name:
+            if contact1==contact:
+                data={
+                    'n1':name1,
+                    'n2':email1,
+                    'n3':contact1,
+                    'n4':password1,
+                }
+                return render(request,'dashboard.html',data)        
+            else:
+                msg='Contact and Name not matched'
+                return render('request','login.html',{msg:msg})        
+        else:
+            pass
+    else:
+        return render(request,'login.html')            

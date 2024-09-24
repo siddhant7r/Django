@@ -2,10 +2,16 @@
 
 <h1>LOGIN PAGE</h1>
 
-<form action="{% url 'login' %}" method="'post">
+<form action="{% url 'login' %}" >
 <label for="">Name</label>
+
 <label for="">Contact</label>
 
+{% csrf_token %}
+
+<input type="name" name="name" id=""placeholder="Enter Your Name"><br><br>
+<input type="contact" name="contact" id="" placeholder="Enter Your Number"><br><br>
 <button>Login</button>
+
 
 </form>
