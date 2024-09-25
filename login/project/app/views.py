@@ -9,12 +9,58 @@ def register(request):
 
 def login(request):
     if request.method=='POST':
-        email=request.POST['email']
-        password=request.POST['password']
-        data1=request.session['data']
+        # email=request.POST['email']
+        email=request.POST.get('email')
+        # password=request.POST['password']
+        password=request.POST.get('password')
+        data1=request.session.get('data')
+        print(data1)
         print(data1["name"],data1["email"],data1["contact"],data1["password"])
+        if data1['email']==email:
+            if data1['password']==password:
+                my_data={
+                    'nm':data1['name'],
+                    'em':data1['email'],
+                    'con':data1['contact'],
+                    'pas':data1['password']
+                }
+                return render(request,'dashboard.html',my_data)
+            else:
+                msg="Password is incorrect"
+                return render(request,'login.html',{'msg':msg})
+        else:
+            msg="Email is incorrect"
+            return render(request,'login.html',{'msg':msg})
     else:
-        return render(request,'login.html')    
+        return render(request,'login.html')
+
+
+    # Try
+    # if request.method=='POST':
+    #     email=request.POST['email']
+    #     password=request.POST['password']
+    #     data1=request.session['data']
+    #     print(data1["name"],data1["email"],data1["contact"],data1["password"])
+    #     # name1=request.session['name']
+    #     email1=request.session['email']
+    #     password1=request.session['password']
+    #     # contact1=request.session['contact']
+    #     if email==email1:
+    #         if password==password1:
+    #             return render(request,'dashboard.html')
+    #         else:
+    #             msg="Email and Password not matching"
+    #             return render(request,'login.html',{'msg':msg})
+    #     else:
+    #         msg="Email not Registered"    
+    #         return render(request,'login.html',{'msg':msg})    
+    
+        
+    # else:
+    #     return render(request,'login.html') 
+    # I tried
+    # 
+    #    
     # if request.method=='POST':
     #     email=request.POST.get('email')
     #     password=request.POST.get('password')
