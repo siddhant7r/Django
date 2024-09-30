@@ -1,1 +1,17 @@
 Welcome to Login Page
+
+
+{{msg}}
+
+<form action="{% url 'login' %}" method="post">
+    {% csrf_token %}
+
+    <label for="">Enter Email</label> <br>
+    <input type="text" name="email"> <br>
+    <label for="">Enter Password</label><br>
+    <input type="text" name="password"><br>
+    <button>Login</button><br>
+
+
+
+</form>

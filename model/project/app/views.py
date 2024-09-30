@@ -37,6 +37,37 @@ def register(request):
             return render(request,'register.html',{'msg':msg})    
     else:
         return render(request,"register.html") 
+    
+def login(request):
+    if request.method=='POST':
+        email=request.POST.get('email')
+        password=request.POST.get('password')
+        user=Student.objects.filter(stu_email=email)
+        if user:
+            user_data=Student.objects.get(stu_email=email)
+            print(user_data)
+            email1=user_data.stu_email
+            name1=user_data.stu_name
+            contact1=user_data.stu_contact
+            password1=user_data.stu_password
+            print(name1,email1,contact1,password1)
+            if password==password1:
+                data={
+                    'name':name1,
+                    'email':email1,
+                    'contact':contact1,
+                    'password':password1
+                }
+                return render(request,'dashboard.html',{'data':data})   
+            else:
+                msg="Email & password not matched"
+                return render(request,'login.html',{'msg':msg})
+        else:
+            msg="Email Not Registered"
+            return render(request,'register.html',{'msg':msg})
+    else:
+        return render(request,'login.html')
+
         # user=Student.objects.filter(stu_email=email)
         # user=Student.objects.get(stu_email=email)
         # print(user)
@@ -81,3 +112,7 @@ def register(request):
 #                            stu_contact=contact)
 #         msg=""
 #         return render(request,'home.html')
+
+
+
+
