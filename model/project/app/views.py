@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Student
+from django.http import HttpResponse
 
 # Create your views here.
 # def home(request):
@@ -67,6 +68,55 @@ def login(request):
             return render(request,'register.html',{'msg':msg})
     else:
         return render(request,'login.html')
+
+
+
+
+
+
+
+# def first(request):
+#     data=Student.objects.first()
+#     data = Student.objects.order_by('stu_name').first()
+#     print(data)
+#     print(data.id,data.stu_name,data.stu_email,data.stu_contact,data.stu_password)
+    
+#     return HttpResponse (data)
+
+
+
+# def last(request):
+#     data=Student.objects.last()
+#     print(data)
+#     print(data.id,data.stu_name,data.stu_email,data.stu_contact,data.stu_password)
+
+#     return HttpResponse(data)
+
+# def earliest(request):
+#     data0=Student.objects.earliest("stu_name")
+#     print(data0.id,data0.stu_name,data0.stu_email)
+#     return HttpResponse (data0)    
+
+
+
+def all_details(request):
+    data=Student.objects.all()
+    print(data)
+    print(data.values)
+    return HttpResponse(data)
+
+def filter(request):
+    data=Student.objects.filter(stu_email='virat@mcg.com')
+    print(data)
+    return HttpResponse(data)
+
+
+
+
+
+
+
+
 
         # user=Student.objects.filter(stu_email=email)
         # user=Student.objects.get(stu_email=email)
