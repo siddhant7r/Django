@@ -9,4 +9,4 @@ class Student(models.Model):
     stu_password=models.CharField(max_length=25)
 
 def __str__(self):
-    return f"{self.stu_name} ({self.stu_email})"
+    return self.stu_name

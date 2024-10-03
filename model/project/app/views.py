@@ -100,23 +100,15 @@ def login(request):
 
 
 def all_details(request):
-    data=Student.objects.all()
+    data=Student.objects.all().values()
     print(data)
     print(data.values)
     return HttpResponse(data)
 
 def filter(request):
-    data=Student.objects.filter(stu_email='virat@mcg.com')
-    print(data)
+    data=Student.objects.filter(stu_email='virat@mcg.com').values()
+    print(data.values)
     return HttpResponse(data)
-
-
-
-
-
-
-
-
 
         # user=Student.objects.filter(stu_email=email)
         # user=Student.objects.get(stu_email=email)
@@ -136,12 +128,7 @@ def filter(request):
         #     )
         # msg="Registration successfull"
         # return render(request,"home.html",{'msg':msg})
-
-        
-
-
-     
-          
+       
 
 # def register(request):
     
@@ -163,6 +150,10 @@ def filter(request):
 #         msg=""
 #         return render(request,'home.html')
 
+def exclude(request):
+    data=Student.objects.exclude(stu_name="virat").values()
+    return render (request,'dashboard.html',{'data':data})
 
-
-
+def my_filter(request):
+    data=Student.objects.filter(stu_name='dhoni')
+    return render(request,'filter.html',{'data':data})
