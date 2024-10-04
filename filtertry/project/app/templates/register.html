@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 align="center">
+        ---------Register Page------------
+    </h1>
+    <div align=center>
+    <form action="" method="post">
+        {% csrf_token %}
+      <h1 >{{msg}}</h1>  
+        <input type="text" name="nm" placeholder="Enter Your Name" required><br><br>
+        <input type="tel" name="con" placeholder="Enter Your Mobile no" required><br><br>
+        <input type="email" name="em" placeholder="Enter Your Email"  required><br><br>
+        <input type="password" name="pass" placeholder="Enter Your password" required><br><br>
+        <input type="cpassword" name="cpass" placeholder="Re-enter Your password" required><br><br>
+        <button>Submit</button>
+        
+    </form>
+    </div>
+</body>
+</html>

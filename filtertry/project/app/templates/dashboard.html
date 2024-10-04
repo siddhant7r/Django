@@ -1,0 +1,68 @@
+{{data}}
+
+{{Data}}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .main{
+            display: flex;
+            flex-basis: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+    <div>
+  <form action="{% url 'query' % }"></form>
+    <label for="">Name</label>
+    <input type="text" name="nm" value="{{data.name}}" disabled >
+    <label for="">Email</label>
+    <input type="text" name="em" value="{{data.email}}" disabled> 
+    <label for="">Query</label>
+    <input type="text" name="query">
+<input type="submit" name="" id="">
+</form>
+
+    </div>
+  
+<div>
+    <h2>Query Details</h2>
+<table border="2px" solid >
+    <thead >
+        <tr>
+            <th>S.No</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Query</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in data %}
+        {{i.id}}
+        {{i.stu_name}} 
+        {{i.stu_email}}
+        {{i.stu_contact}}
+        {{i.stu_password}}<br>
+        {% endfor %}   
+    </tbody>
+</table>
+</div>
+
+
+</div>
+</body>
+</html>
+
+
+
+
+
+
