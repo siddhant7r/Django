@@ -82,9 +82,23 @@ def query(request):
         email1=request.POST.get('em')
         query1=request.POST.get('query')
 
-        Query.objects.create(name=name1,query=query1,email=email1)
+        Query.objects.create(stu_name=name1,stu_query=query1,stu_email=email1)
 
-        Data=Student.objects.get(stu_email=email1)
+        data=Student.objects.get(stu_email=email1)
+
+        data1={'name':data.stu_name,
+               'email':data.stu_email,
+               'contact':data.stu_contact,
+               'password':data.stu_password}
+        
+        query_data=Query.objects.filter(stu_email=email1)
+        return render(request,'dashboard.html',{'data':data1, 'query_data':query_data})
+    
+
+    
+
+
+
 
 
 

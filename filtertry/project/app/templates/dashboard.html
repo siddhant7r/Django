@@ -1,6 +1,3 @@
-{{data}}
-
-{{Data}}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,14 +16,15 @@
 <body>
     <div class="main">
     <div>
-  <form action="{% url 'query' % }"></form>
+  <form action="{% url 'query' %}" method="POST">
+    {% csrf_token %}
     <label for="">Name</label>
-    <input type="text" name="nm" value="{{data.name}}" disabled >
+    <input type="text" name="nm" value="{{data.name}}" readonly > <br>
     <label for="">Email</label>
-    <input type="text" name="em" value="{{data.email}}" disabled> 
+    <input type="email" name="em" value="{{data.email}}" readonly> <br>
     <label for="">Query</label>
-    <input type="text" name="query">
-<input type="submit" name="" id="">
+    <input type="text" name="query"> <br>
+<button>Query</button>
 </form>
 
     </div>
@@ -45,16 +43,23 @@
         </tr>
     </thead>
     <tbody>
-        {% for i in data %}
-        {{i.id}}
-        {{i.stu_name}} 
-        {{i.stu_email}}
-        {{i.stu_contact}}
-        {{i.stu_password}}<br>
-        {% endfor %}   
+        {% for i in query_data %}
+        <tr>
+           
+       <td>{{forloop.counter}}</td> 
+       <td>{{i.stu_name}} </td> 
+       <td>{{i.stu_email}}</td> 
+       <td>{{i.stu_query}}</td> 
+       <td><button>Edit</button></td>
+       <td><button>Delete</button></td>
+          
+        </tr>
+       {% endfor %}   
     </tbody>
 </table>
 </div>
+
+
 
 
 </div>
